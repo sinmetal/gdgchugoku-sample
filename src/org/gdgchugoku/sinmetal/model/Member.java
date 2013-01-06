@@ -6,7 +6,9 @@ import java.util.List;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.users.User;
 
+import org.gdgchugoku.sinmetal.meta.MemberMeta;
 import org.slim3.datastore.Attribute;
+import org.slim3.datastore.Datastore;
 import org.slim3.datastore.Model;
 
 @Model(schemaVersion = 1)
@@ -88,6 +90,10 @@ public class Member implements Serializable {
      */
     public void setToDoKeys(List<Key> toDoKeys) {
         this.toDoKeys = toDoKeys;
+    }
+    
+    public static Key createKey(User user) {
+        return Datastore.createKey(MemberMeta.get(), user.getEmail());
     }
 
     @Override
