@@ -1,9 +1,11 @@
 package org.gdgchugoku.sinmetal.service;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.gdgchugoku.sinmetal.model.Member;
+import org.gdgchugoku.sinmetal.model.ToDo;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -43,5 +45,10 @@ public class ToDoManagerService {
                 throw new RuntimeException("Datastore put error");
             }
         }
+    }
+    
+    public List<ToDo> get(User user) {
+        final Member member = memberService.get(user);
+        return toDoService.get(member.getToDoKeys());
     }
 }
