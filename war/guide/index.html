@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Guide</title>
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+<!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<!-- Le styles -->
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/lib/bootstrap/css/bootstrap-responsive.min.css">
+<link rel="stylesheet" href="/css/global.css">
+<!-- Le fav and touch icons -->
+</head>
+<body>
+	<div id="menu">
+		<div class="topbar" data-dropdown="dropdown">
+			<div class="navbar navbar-fixed-top">
+				<div class="navbar-inner">
+					<div class="container-fluid">
+						<a class="brand" href="/">Guide</a>
+						<div class="nav-collapse">
+							<ul class="nav">
+								<li><a href="/storage/">Home</a></li>
+								<li><a href="#about">About</a></li>
+								<li><a href="#localTradeStation">LTS</a></li>
+								<li><a href="#tournament">Tournament</a></li>
+								<li><a href="#battle">Battle</a></li>
+							</ul>
+							<ul id="login-menu" class="nav pull-right">
+								<li><a href="/authentication/">ログイン</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span3">
+				<script src="//widgets.twimg.com/j/2/widget.js"></script>
+				<script>
+					new TWTR.Widget({
+						version : 2,
+						type : 'search',
+						search : '#pokemonBW',
+						interval : 30000,
+						title : 'PokemonBW',
+						subject : '',
+						width : 220,
+						height : 600,
+						theme : {
+							shell : {
+								background : '#f5f5f5',
+								color : '#444444'
+							},
+							tweets : {
+								background : '#ffffff',
+								color : '#444444',
+								links : '#1985b5'
+							}
+						},
+						features : {
+							scrollbar : true,
+							loop : true,
+							live : true,
+							hashtags : true,
+							timestamp : true,
+							avatars : true,
+							toptweets : true,
+							behavior : 'default'
+						}
+					}).render().start();
+				</script>
+			</div>
+			<div class="span9">
+				<pre class="prettyprint">
+private void hoge() {
+}
+				</pre>
+			</div>
+		</div>
+		<hr>
+		<div id="footer"></div>
+	</div>
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>
+		window.jQuery
+				|| document
+						.write('<script src="/lib/jquery/jquery-1.7.2.min.js"><\/script>')
+	</script>
+	<script src="/lib/bootstrap/js/bootstrap-dropdown.js"></script>
+	<script src="/lib/bootstrap/js/bootstrap-alert.js"></script>
+</body>
+</html>
