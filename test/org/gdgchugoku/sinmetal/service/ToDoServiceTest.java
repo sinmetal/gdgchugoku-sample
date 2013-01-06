@@ -17,11 +17,9 @@ public class ToDoServiceTest extends AppEngineTestCase {
 
     @Test
     public void put() throws Exception {
-        final String KIND = "ToDo";
-
-        final int before = tester.count(KIND);
+        final int before = tester.count(ToDo.class);
         service.put(null, "TODOメモ");
-        final int after = tester.count(KIND);
+        final int after = tester.count(ToDo.class);
         assertThat("ToDoエンティティが1件増えている", after, is(before + 1));
     }
 

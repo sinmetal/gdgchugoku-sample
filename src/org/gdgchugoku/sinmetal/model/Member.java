@@ -1,6 +1,7 @@
 package org.gdgchugoku.sinmetal.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.appengine.api.datastore.Key;
@@ -90,6 +91,14 @@ public class Member implements Serializable {
      */
     public void setToDoKeys(List<Key> toDoKeys) {
         this.toDoKeys = toDoKeys;
+    }
+    
+    public void addToDoKey(Key key) {
+        if (toDoKeys == null) {
+            toDoKeys = new ArrayList<Key>();
+        }
+        
+        toDoKeys.add(key);
     }
     
     public static Key createKey(User user) {
