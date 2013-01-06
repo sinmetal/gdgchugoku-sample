@@ -1,6 +1,6 @@
 package org.gdgchugoku.sinmetal.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2013-01-06 21:28:48")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2013-01-06 23:02:38")
 /** */
 public final class ToDoMeta extends org.slim3.datastore.ModelMeta<org.gdgchugoku.sinmetal.model.ToDo> {
 
@@ -52,7 +52,7 @@ public final class ToDoMeta extends org.slim3.datastore.ModelMeta<org.gdgchugoku
         entity.setProperty("entryDate", m.getEntryDate());
         entity.setProperty("memo", m.getMemo());
         entity.setProperty("version", m.getVersion());
-        entity.setProperty("slim3.schemaVersion", 1);
+        entity.setProperty("schemaVersion", 1);
         return entity;
     }
 
@@ -96,7 +96,7 @@ public final class ToDoMeta extends org.slim3.datastore.ModelMeta<org.gdgchugoku
 
     @Override
     public String getSchemaVersionName() {
-        return "slim3.schemaVersion";
+        return "schemaVersion";
     }
 
     @Override

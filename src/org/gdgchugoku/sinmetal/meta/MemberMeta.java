@@ -1,6 +1,6 @@
 package org.gdgchugoku.sinmetal.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2013-01-06 21:28:48")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2013-01-06 23:02:41")
 /** */
 public final class MemberMeta extends org.slim3.datastore.ModelMeta<org.gdgchugoku.sinmetal.model.Member> {
 
@@ -52,7 +52,7 @@ public final class MemberMeta extends org.slim3.datastore.ModelMeta<org.gdgchugo
         entity.setProperty("toDoKeys", m.getToDoKeys());
         entity.setProperty("user", m.getUser());
         entity.setProperty("version", m.getVersion());
-        entity.setProperty("slim3.schemaVersion", 1);
+        entity.setProperty("schemaVersion", 1);
         return entity;
     }
 
@@ -96,7 +96,7 @@ public final class MemberMeta extends org.slim3.datastore.ModelMeta<org.gdgchugo
 
     @Override
     public String getSchemaVersionName() {
-        return "slim3.schemaVersion";
+        return "schemaVersion";
     }
 
     @Override

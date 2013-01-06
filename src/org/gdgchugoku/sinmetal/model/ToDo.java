@@ -8,7 +8,7 @@ import org.slim3.datastore.Model;
 
 import com.google.appengine.api.datastore.Key;
 
-@Model(schemaVersion = 1)
+@Model(schemaVersion = 1, schemaVersionName = "schemaVersion")
 public class ToDo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -18,14 +18,14 @@ public class ToDo implements Serializable {
 
     @Attribute(version = true)
     private Long version;
-    
+
     private String memo;
-    
+
     private Date entryDate;
 
     /**
      * Returns the key.
-     *
+     * 
      * @return the key
      */
     public Key getKey() {
@@ -34,7 +34,7 @@ public class ToDo implements Serializable {
 
     /**
      * Sets the key.
-     *
+     * 
      * @param key
      *            the key
      */
@@ -44,7 +44,7 @@ public class ToDo implements Serializable {
 
     /**
      * Returns the version.
-     *
+     * 
      * @return the version
      */
     public Long getVersion() {
@@ -53,7 +53,7 @@ public class ToDo implements Serializable {
 
     /**
      * Sets the version.
-     *
+     * 
      * @param version
      *            the version
      */
@@ -69,7 +69,8 @@ public class ToDo implements Serializable {
     }
 
     /**
-     * @param memo the memo to set
+     * @param memo
+     *            the memo to set
      */
     public void setMemo(String memo) {
         this.memo = memo;
@@ -83,7 +84,8 @@ public class ToDo implements Serializable {
     }
 
     /**
-     * @param entryDate the entryDate to set
+     * @param entryDate
+     *            the entryDate to set
      */
     public void setEntryDate(Date entryDate) {
         this.entryDate = entryDate;

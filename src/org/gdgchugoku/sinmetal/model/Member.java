@@ -12,7 +12,7 @@ import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Datastore;
 import org.slim3.datastore.Model;
 
-@Model(schemaVersion = 1)
+@Model(schemaVersion = 1, schemaVersionName = "schemaVersion")
 public class Member implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,14 +22,14 @@ public class Member implements Serializable {
 
     @Attribute(version = true)
     private Long version;
-    
+
     private User user;
-    
+
     private List<Key> toDoKeys;
 
     /**
      * Returns the key.
-     *
+     * 
      * @return the key
      */
     public Key getKey() {
@@ -38,7 +38,7 @@ public class Member implements Serializable {
 
     /**
      * Sets the key.
-     *
+     * 
      * @param key
      *            the key
      */
@@ -48,7 +48,7 @@ public class Member implements Serializable {
 
     /**
      * Returns the version.
-     *
+     * 
      * @return the version
      */
     public Long getVersion() {
@@ -57,7 +57,7 @@ public class Member implements Serializable {
 
     /**
      * Sets the version.
-     *
+     * 
      * @param version
      *            the version
      */
@@ -73,7 +73,8 @@ public class Member implements Serializable {
     }
 
     /**
-     * @param user the user to set
+     * @param user
+     *            the user to set
      */
     public void setUser(User user) {
         this.user = user;
@@ -87,20 +88,21 @@ public class Member implements Serializable {
     }
 
     /**
-     * @param toDoKeys the toDoKeys to set
+     * @param toDoKeys
+     *            the toDoKeys to set
      */
     public void setToDoKeys(List<Key> toDoKeys) {
         this.toDoKeys = toDoKeys;
     }
-    
+
     public void addToDoKey(Key key) {
         if (toDoKeys == null) {
             toDoKeys = new ArrayList<Key>();
         }
-        
+
         toDoKeys.add(key);
     }
-    
+
     public static Key createKey(User user) {
         return Datastore.createKey(MemberMeta.get(), user.getEmail());
     }
