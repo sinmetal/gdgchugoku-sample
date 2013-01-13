@@ -33,7 +33,7 @@ public class ToDoManagerService {
         Transaction tx = null;
         try {
             tx = datastoreService.beginTransaction(txOps);
-            final Key toDoKey = toDoService.put(tx, memo);
+            final Key toDoKey = toDoService.put(tx, user, memo);
             final Member member = memberService.get(user);
             member.addToDoKey(toDoKey);
             memberService.put(tx, member);

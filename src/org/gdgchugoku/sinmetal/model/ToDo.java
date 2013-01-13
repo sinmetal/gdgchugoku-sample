@@ -3,10 +3,13 @@ package org.gdgchugoku.sinmetal.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.gdgchugoku.sinmetal.meta.ToDoMeta;
 import org.slim3.datastore.Attribute;
+import org.slim3.datastore.Datastore;
 import org.slim3.datastore.Model;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.users.User;
 
 @Model(schemaVersion = 1, schemaVersionName = "schemaVersion")
 public class ToDo implements Serializable {
@@ -89,6 +92,21 @@ public class ToDo implements Serializable {
      */
     public void setEntryDate(Date entryDate) {
         this.entryDate = entryDate;
+    }
+    
+    public static Key createKey(User user, String memo) {
+        final Key memberKey = Member.createKey(user);
+        // ユーザのToDoの中で、同じ内容のものは複数登録できない
+        final String keyName = String.format("%s,%s", memberKey.getName(), memo);
+        return Datastore.createKey(ToDoMeta.get(), keyName);
+    }
+    
+    public static ToDo getInstance(User user, String memo) {
+        final ToDo instance = new ToDo();
+        instance.setKey(ToDo.createKey(user, memo));
+        instance.setMemo(memo);
+        instance.setEntryDate(new Date());
+        return instance;
     }
 
     @Override

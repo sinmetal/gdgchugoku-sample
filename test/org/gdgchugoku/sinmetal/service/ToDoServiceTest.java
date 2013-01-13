@@ -10,6 +10,7 @@ import org.slim3.datastore.Datastore;
 import org.slim3.tester.AppEngineTestCase;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.users.User;
 
 public class ToDoServiceTest extends AppEngineTestCase {
 
@@ -18,7 +19,9 @@ public class ToDoServiceTest extends AppEngineTestCase {
     @Test
     public void put() throws Exception {
         final int before = tester.count(ToDo.class);
-        service.put(null, "TODOメモ");
+        
+        final User user = new User("hoge@hoge.com", "hoge.com");
+        service.put(null, user, "TODOメモ");
         final int after = tester.count(ToDo.class);
         assertThat("ToDoエンティティが1件増えている", after, is(before + 1));
     }
@@ -26,8 +29,9 @@ public class ToDoServiceTest extends AppEngineTestCase {
     @Test
     public void putされた内容確認() throws Exception {
         final String MEMO = "TODOメモ";
-
-        final Key key = service.put(null, MEMO);
+        final User user = new User("hoge@hoge.com", "hoge.com");
+        
+        final Key key = service.put(null, user, MEMO);
         final ToDo toDo = Datastore.get(ToDoMeta.get(), key);
         assertThat("メモが保存されている", toDo.getMemo(), is(MEMO));
         assertThat("登録日時が保存されている", toDo.getEntryDate(), is(notNullValue()));
