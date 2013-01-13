@@ -5,14 +5,19 @@
 <title>GDGChugokuSample</title>
 </head>
 <body>
-	<a id="login" href="">ログイン</a>
-	<input type="button" id="refresh_button" value="refresh" />
+	<div>
+		<a id="login" href="">ログイン</a>
+	</div>
+
+	<input type="button" id="refresh" value="refresh" />
 	<div id="todo_list"></div>
 	<hr />
 
 	ToDoを入れてね！
-	<input type="text" id="memo" />
-	<input type="button" id="add_button" value="add" />
+	<form id="form" method="post" action="dummy">
+		<input type="text" id="memo" name="memo" /> <input type="submit"
+			value="add" />
+	</form>
 
 	<script
 		src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -22,52 +27,55 @@
 						.write('<script src="/lib/jquery/jquery-1.7.2.min.js"><\/script>')
 	</script>
 	<script>
-		function refresh() {
-			$.ajax({
-				url : '/toDo',
-				type : 'GET',
-				success : function(data, status, xhr) {
-					console.log('success')
+		$(function() {
+			var refresh = function() {
+				var onError = function(data, status, xhr) {
+					console.log('error');
+				};
+
+				var onSuccess = function(data, status, xhr) {
+					console.log('success');
 					if (data['loginUrl']) {
 						$('#login').attr('href', data['loginUrl']);
+						return;
 					}
-					$('#todo_list').html(data);
-					console.log(data['loginUrl']);
-				},
-				error : function(data, status, xhr) {
-					console.log('error');
-				}
-			});
-		}
-		
-		$(document).ready(function() {
-			refresh();
-			
-			$('#refresh_button').click(function() {
-				refresh();
-			});
+					$('#todo_list').html('');
+					$.each(data, function(_, toDo) {
+						$('#todo_list').append(toDo['memo']);
+					});
+				};
 
-			$("#add_button").click(function() {
+				$.ajax({
+					url : '/toDo',
+					type : 'GET',
+				}).success(onSuccess).error(onError);
+				;
+				return false;
+			}
+			$('#refresh').click(refresh);
+		})
+
+		$(function() {
+			var submit = function(event) {
+				var memo = $('#memo');
+
+				var onError = function(data, status, xhr) {
+					console.log('error');
+				};
+
+				var onSuccess = function(data, status, xhr) {
+					console.log('success');
+				};
+
 				$.ajax({
 					url : '/toDo',
 					type : 'POST',
-					data : {
-						memo : $('#memo').value,
-					},
-					dataType : 'application/json',
-					success: function(data, status, xhr) {
-				        console.log('success');
-						console.log(data);
-				    },
-					error : function(data, status, xhr) {
-						console.log('error');
-						console.log(data);
-						console.log(status);
-						console.log(xhr);
-					}
-				});
-			});
-		});
+					data : memo
+				}).success(onSuccess).error(onError);
+				return false;
+			}
+			$('#form').submit(submit);
+		})
 	</script>
 </body>
 </html>

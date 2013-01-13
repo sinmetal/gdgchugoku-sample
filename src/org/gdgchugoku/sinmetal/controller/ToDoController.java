@@ -41,6 +41,7 @@ public class ToDoController extends Controller {
             responseMap.put("loginUrl", userService.createLoginURL(basePath));
             final JSONObject jsonObject = new JSONObject(responseMap);
             response.getWriter().println(jsonObject.toString());
+            response.flushBuffer();
             return null;
         }
 
@@ -67,6 +68,7 @@ public class ToDoController extends Controller {
         response.setCharacterEncoding("utf-8");
         response.setContentType("application/json");
         response.getWriter().println(json);
+        response.flushBuffer();
         return null;
     }
 }

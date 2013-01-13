@@ -1,11 +1,13 @@
 package org.gdgchugoku.sinmetal.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.gdgchugoku.sinmetal.model.Member;
 import org.gdgchugoku.sinmetal.model.ToDo;
+import org.slim3.datastore.EntityNotFoundRuntimeException;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -16,8 +18,9 @@ import com.google.appengine.api.users.User;
 
 public class ToDoManagerService {
 
-    private final Logger logger = Logger.getLogger(ToDoManagerService.class.getName());
-    
+    private final Logger logger = Logger.getLogger(ToDoManagerService.class
+        .getName());
+
     private final MemberService memberService = new MemberService();
 
     private final ToDoService toDoService = new ToDoService();
@@ -46,9 +49,14 @@ public class ToDoManagerService {
             }
         }
     }
-    
+
     public List<ToDo> get(User user) {
-        final Member member = memberService.get(user);
-        return toDoService.get(member.getToDoKeys());
+        try {
+            final Member member = memberService.get(user);
+            return toDoService.get(member.getToDoKeys());
+        } catch (EntityNotFoundRuntimeException e) {
+            memberService.put(user);
+            return new ArrayList<ToDo>();
+        }
     }
 }
