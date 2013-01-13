@@ -39,10 +39,15 @@
 						$('#login').attr('href', data['loginUrl']);
 						return;
 					}
-					$('#todo_list').html('');
+					$('#todo_list ul').remove();
+					var ul = $('<ul/>');
 					$.each(data, function(_, toDo) {
-						$('#todo_list').append(toDo['memo']);
+						var li = $('<li/>')
+	    				  .text(toDo['memo'] + 
+	    				  '(' + new Date(toDo['entryDate']) + ')');
+						li.appendTo(ul);
 					});
+					ul.appendTo('#todo_list');
 				};
 
 				$.ajax({
