@@ -1,6 +1,6 @@
 package org.gdgchugoku.sinmetal.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2013-01-13 09:55:14")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2013-01-13 15:12:08")
 /** */
 public final class ToDoMeta extends org.slim3.datastore.ModelMeta<org.gdgchugoku.sinmetal.model.ToDo> {
 
